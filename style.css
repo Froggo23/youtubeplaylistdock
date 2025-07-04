@@ -1,0 +1,367 @@
+* {
+    box-sizing: border-box;
+}
+
+#ytp-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    background-color: #181818;
+    color: #efefef;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: "YouTube Sans", "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    transform: translate(0px, 0px);
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#ytp-connect-btn {
+    background-color: #3ea6ff;
+    color: #0f0f0f;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 15px;
+    transition: background-color 0.2s;
+}
+
+#ytp-connect-btn:hover {
+    background-color: #6ebcff;
+}
+
+.ytp-selection-ui {
+    padding: 20px;
+    width: 320px;
+    cursor: grab;
+}
+.ytp-selection-ui:active {
+    cursor: grabbing;
+}
+
+.ytp-selection-ui h3 {
+    margin: 0 0 10px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 18px;
+}
+
+.ytp-selection-ui ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.ytp-selection-ui li {
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    font-size: 15px;
+}
+
+.ytp-selection-ui li:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.ytp-ui {
+    display: flex;
+    width: 600px;
+    user-select: none;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ytp-main {
+    cursor: grab;
+    position: relative;
+    padding: 20px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    width: 300px;
+    flex-shrink: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ytp-main:active {
+    cursor: grabbing;
+}
+
+.ytp-window-controls {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.ytp-window-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s;
+}
+
+.ytp-window-btn:hover {
+    transform: scale(1.1);
+}
+
+.ytp-window-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: scale(1);
+}
+
+#ytp-close-btn { background-color: #ff5f57; opacity: 0.7; }
+#ytp-close-btn:hover { opacity: 1; }
+#ytp-min-btn { background-color: #febc2e; opacity: 0.7; }
+#ytp-min-btn:hover { opacity: 1; }
+#ytp-max-btn { background-color: #28c840; opacity: 0.7; }
+#ytp-max-btn:hover { opacity: 1; }
+#ytp-close-btn[disabled] { opacity: 0.5; transform: scale(1); cursor: default; }
+
+
+.ytp-details {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    transition: margin-top 0.3s ease;
+}
+
+#ytp-album-art {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.ytp-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#ytp-song-title {
+    font-size: 17px;
+    font-weight: 700;
+    margin: 0 0 5px 0;
+    color: #fff;
+}
+
+#ytp-artist-name {
+    font-size: 14px;
+    color: #b3b3b3;
+    margin: 0 0 10px 0;
+    font-weight: 400;
+}
+
+#ytp-progress-bar-container {
+    width: 100%;
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 2.5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+#ytp-progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 2.5px;
+    transition: width 0.1s linear;
+}
+
+#ytp-progress-bar-container:hover #ytp-progress-bar {
+    background-color: #3ea6ff;
+}
+
+.ytp-timestamps {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #b3b3b3;
+}
+
+.ytp-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.ytp-controls button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.ytp-controls svg {
+    width: 32px;
+    height: 32px;
+    fill: #b3b3b3;
+    transition: all 0.2s;
+}
+
+.ytp-controls button:hover:not(:disabled) svg {
+    fill: white;
+}
+
+#ytp-play-pause-btn svg {
+    width: 42px;
+    height: 42px;
+    fill: white;
+}
+#ytp-play-pause-btn:hover svg {
+    transform: scale(1.05);
+}
+
+.ytp-controls button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.ytp-playlist {
+    width: 300px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.ytp-playlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    flex-shrink: 0;
+}
+
+.ytp-playlist-header h3 {
+    font-weight: 500;
+    font-size: 17px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#ytp-change-playlist-btn {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+    transition: background-color 0.2s, opacity 0.2s;
+    margin-left: 10px;
+}
+
+#ytp-change-playlist-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    opacity: 1;
+}
+
+#ytp-change-playlist-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+}
+
+#ytp-song-list {
+    height: 144px;
+    overflow: hidden;
+}
+
+.ytp-song-item {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+.ytp-song-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.ytp-song-item.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #3ea6ff;
+    font-weight: 700;
+}
+
+#ytp-container.enlarged .ytp-ui { width: 900px; }
+#ytp-container.enlarged .ytp-playlist { flex-grow: 1; }
+#ytp-container.medium .ytp-ui { width: 300px; }
+#ytp-container.medium .ytp-playlist { display: none; }
+#ytp-container.minimized .ytp-ui { width: auto; }
+#ytp-container.minimized .ytp-playlist { display: none; }
+#ytp-container.minimized .ytp-main { width: auto; padding: 12px; border-right: none; }
+#ytp-container.minimized .ytp-details { margin-top: 25px; gap: 0; }
+#ytp-container.minimized .ytp-info,
+#ytp-container.minimized .ytp-controls { display: none; }
+
+#ytp-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    padding-top: 10px;
+    flex-shrink: 0;
+}
+
+.ytp-page-btn {
+    background: none;
+    border: 1px solid transparent;
+    color: #b3b3b3;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.ytp-page-btn:hover:not(:disabled) {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.ytp-page-btn.active {
+    background-color: #3f3f3f;
+    color: white;
+}
+
+.ytp-page-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}

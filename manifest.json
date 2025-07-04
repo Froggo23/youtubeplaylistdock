@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Playlist Dock",
+  "version": "4.0",
+  "description": "Displays and plays a chosen YouTube playlist directly on the YouTube homepage.",
+  "permissions": ["storage", "identity"],
+  "host_permissions": [
+    "*://*.youtube.com/*",
+    "*://*.googleapis.com/*"
+  ],
+  "action": {},
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content.js"],
+      "css": ["style.css"]
+    }
+  ],
+  "oauth2": {
+    "client_id": "869101119077-b5t9adaq64u6rmsbu30vkj0p8qba9g7p.apps.googleusercontent.com",
+    "scopes": ["https://www.googleapis.com/auth/youtube.readonly"]
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["player.js"],
+      "matches": ["*://*.youtube.com/*"]
+    }
+  ]
+}
